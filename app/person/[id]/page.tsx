@@ -295,7 +295,7 @@ const peopleDatabase = {
       "Quality Time": 3.6,
       "Physical Touch": 3.2,
     },
-    topPositiveTags: ["CS Major", "Day Trader", "Honey Bread", "Whiskey Drinker", "Ambitious", "Tech Savvy"],
+    topPositiveTags: ["CS Major", "Day Trader", "Honey Bread Lover", "Whiskey Drinker", "Ambitious", "Tech Savvy"],
     topNegativeTags: ["Failed Trader", "Broke", "Weird Food Habits"],
     reviews: [
       {
@@ -340,7 +340,7 @@ const peopleDatabase = {
           "Physical Touch": 2,
         },
         review:
-          "dude goons way too much to JAV. like literally every night. also he's really good at coding and helped me fix my laptop. but the JAV thing is just weird af",
+          "he's a CS major but somehow can't figure out that day trading is just gambling. lost all his money and now he's asking me to lend him cash for 'one more trade'. like bro, you made 0 money this year, maybe stop",
         date: "1 month ago",
       },
       {
@@ -355,7 +355,7 @@ const peopleDatabase = {
           "Physical Touch": 2,
         },
         review:
-          "dude drinks way too much premier protein that he smells like a benchod protein fart. like literally every day he has like 5 protein shakes and his room smells like a gym locker. it's disgusting",
+          "dude drinks way too much premier protein that he smells like a protein fart. like literally every day he has like 5 protein shakes and his room smells like a gym locker. it's disgusting",
         date: "2 months ago",
       },
     ],
