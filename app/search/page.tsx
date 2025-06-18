@@ -51,6 +51,24 @@ const searchPeople = async (firstName: string, lastName: string, college: string
       totalReviews: 6,
       topTags: ["Loyal", "Supportive", "Great Communicator"],
     },
+    {
+      id: "kunal-kumar-unc",
+      firstName: "Kunal",
+      lastName: "Kumar",
+      college: "UNC Chapel Hill",
+      dateAgainPercentage: 80,
+      totalReviews: 5,
+      topTags: ["Ambitious", "Great Communicator", "Thoughtful", "Reliable"],
+    },
+    {
+      id: "neel-joshi-unc",
+      firstName: "Neel",
+      lastName: "Joshi",
+      college: "UNC Chapel Hill",
+      dateAgainPercentage: 35,
+      totalReviews: 6,
+      topTags: ["Charming", "Intelligent", "Adventurous", "Funny"],
+    },
   ]
 
   // Filter results based on search criteria
