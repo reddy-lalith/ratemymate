@@ -74,6 +74,15 @@ const searchPeople = async (firstName: string, lastName: string, college: string
       totalReviews: 6,
       topTags: ["Charming", "Intelligent", "Adventurous", "Funny"],
     },
+    {
+      id: "kishan-gajera-unc",
+      firstName: "Kishan",
+      lastName: "Gajera",
+      college: "UNC Chapel Hill",
+      dateAgainPercentage: 69,
+      totalReviews: 7,
+      topTags: ["CS Major", "Day Trader", "Honey Lover", "Whiskey Drinker"],
+    },
   ]
 
   // Filter results based on search criteria

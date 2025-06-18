@@ -283,6 +283,83 @@ const peopleDatabase = {
       },
     ],
   },
+  "kishan-gajera-unc": {
+    name: "Kishan Gajera",
+    college: "UNC Chapel Hill",
+    dateAgainPercentage: 69,
+    totalReviews: 4,
+    loveLanguageScores: {
+      "Acts of Service": 3.8,
+      "Words of Affirmation": 3.4,
+      "Receiving Gifts": 2.9,
+      "Quality Time": 3.6,
+      "Physical Touch": 3.2,
+    },
+    topPositiveTags: ["CS Major", "Day Trader", "Honey Lover", "Whiskey Drinker", "Ambitious", "Tech Savvy"],
+    topNegativeTags: ["Failed Trader", "Broke", "Weird Food Habits"],
+    reviews: [
+      {
+        id: 1,
+        dateAgain: "yes",
+        tags: ["CS Major", "Tech Savvy", "Ambitious"],
+        loveLanguages: {
+          "Acts of Service": 4,
+          "Words of Affirmation": 4,
+          "Receiving Gifts": 3,
+          "Quality Time": 4,
+          "Physical Touch": 3,
+        },
+        review:
+          "he's actually pretty smart with computers and stuff. showed me how to code a simple game which was cool. but then he spent the whole night talking about his 'trading strategy' while eating honey with bread straight from the jar",
+        date: "1 week ago",
+      },
+      {
+        id: 2,
+        dateAgain: "no",
+        tags: ["Failed Trader", "Broke", "Whiskey Drinker"],
+        loveLanguages: {
+          "Acts of Service": 3,
+          "Words of Affirmation": 2,
+          "Receiving Gifts": 2,
+          "Quality Time": 3,
+          "Physical Touch": 3,
+        },
+        review:
+          "bro lost his entire funded account and now he's broke af. still drinks magan whiskey like he's rich tho. kept crying about his 'losses' while eating honey with bread. like dude, maybe stop trading and get a real job",
+        date: "2 weeks ago",
+      },
+      {
+        id: 3,
+        dateAgain: "no",
+        tags: ["Weird Habits", "CS Major", "Tech Savvy"],
+        loveLanguages: {
+          "Acts of Service": 3,
+          "Words of Affirmation": 2,
+          "Receiving Gifts": 2,
+          "Quality Time": 3,
+          "Physical Touch": 2,
+        },
+        review:
+          "dude goons way too much to JAV. like literally every night. also he's really good at coding and helped me fix my laptop. but the JAV thing is just weird af",
+        date: "1 month ago",
+      },
+      {
+        id: 4,
+        dateAgain: "no",
+        tags: ["Weird Habits", "Protein Obsessed", "Bad Smell"],
+        loveLanguages: {
+          "Acts of Service": 3,
+          "Words of Affirmation": 3,
+          "Receiving Gifts": 2,
+          "Quality Time": 3,
+          "Physical Touch": 2,
+        },
+        review:
+          "dude drinks way too much premier protein that he smells like a benchod protein fart. like literally every day he has like 5 protein shakes and his room smells like a gym locker. it's disgusting",
+        date: "2 months ago",
+      },
+    ],
+  },
 }
 
 export default function PersonProfile({ params }: { params: { id: string } }) {
