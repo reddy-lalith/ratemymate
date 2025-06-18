@@ -7,85 +7,23 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { ArrowLeft, ThumbsUp, ThumbsDown, Minus, GraduationCap, Heart } from "lucide-react"
 import Link from "next/link"
-
-interface SearchResult {
-  id: string
-  name: string
-  college: string
-  dateAgainPercentage: number
-  totalReviews: number
-  topTags: string[]
-}
-
-// Mock database search function
-const searchPeople = async (firstName: string, lastInitial: string, college: string): Promise<SearchResult[]> => {
-  // Simulate API delay
-  await new Promise((resolve) => setTimeout(resolve, 500))
-
-  // Mock database results
-  const mockDatabase = [
-    {
-      id: "pushti-l-unc",
-      firstName: "Pushti",
-      lastInitial: "L",
-      college: "UNC Chapel Hill",
-      dateAgainPercentage: 100,
-      totalReviews: 8,
-      topTags: ["Amazing Communicator", "Incredibly Supportive", "Loyal", "Funny"],
-    },
-    {
-      id: "john-d-nyu",
-      firstName: "John",
-      lastInitial: "D",
-      college: "NYU",
-      dateAgainPercentage: 75,
-      totalReviews: 4,
-      topTags: ["Great Communicator", "Funny", "Respectful"],
-    },
-    {
-      id: "sarah-m-duke",
-      firstName: "Sarah",
-      lastInitial: "M",
-      college: "Duke University",
-      dateAgainPercentage: 90,
-      totalReviews: 6,
-      topTags: ["Loyal", "Supportive", "Great Communicator"],
-    },
-  ]
-
-  // Filter results based on search criteria
-  return mockDatabase
-    .filter(
-      (person) =>
-        person.firstName.toLowerCase() === firstName.toLowerCase() &&
-        person.lastInitial.toLowerCase() === lastInitial.toLowerCase() &&
-        person.college.toLowerCase().includes(college.toLowerCase()),
-    )
-    .map((person) => ({
-      id: person.id,
-      name: `${person.firstName} ${person.lastInitial}.`,
-      college: person.college,
-      dateAgainPercentage: person.dateAgainPercentage,
-      totalReviews: person.totalReviews,
-      topTags: person.topTags,
-    }))
-}
+import { searchPeople, PersonWithStats } from "@/lib/database"
 
 export default function SearchResults() {
   const searchParams = useSearchParams()
-  const [results, setResults] = useState<SearchResult[]>([])
+  const [results, setResults] = useState<PersonWithStats[]>([])
   const [loading, setLoading] = useState(true)
 
   // Get search parameters once and memoize them
   const firstName = searchParams.get("firstName") || ""
-  const lastInitial = searchParams.get("lastInitial") || ""
+  const lastName = searchParams.get("lastName") || ""
   const college = searchParams.get("college") || ""
 
   useEffect(() => {
     // Only run search if we have all required parameters
-    if (firstName && lastInitial && college) {
+    if (firstName && lastName && college) {
       setLoading(true)
-      searchPeople(firstName, lastInitial, college)
+      searchPeople(firstName, lastName, college)
         .then((searchResults) => {
           setResults(searchResults)
         })
@@ -100,7 +38,7 @@ export default function SearchResults() {
       setLoading(false)
       setResults([])
     }
-  }, [firstName, lastInitial, college])
+  }, [firstName, lastName, college])
 
   if (loading) {
     return (
@@ -145,7 +83,7 @@ export default function SearchResults() {
             Back to Search
           </Link>
           <h1 className="text-3xl font-bold text-gray-900">
-            Search Results for "{firstName} {lastInitial}." at {college}
+            Search Results for "{firstName} {lastName}" at {college}
           </h1>
           <p className="text-gray-600 mt-2">Found {results.length} people matching your search</p>
         </div>
@@ -157,7 +95,7 @@ export default function SearchResults() {
                 <div className="flex items-center justify-between">
                   <div className="flex-1">
                     <div className="flex items-center space-x-4 mb-3">
-                      <h3 className="text-xl font-semibold text-gray-900">{person.name}</h3>
+                      <h3 className="text-xl font-semibold text-gray-900">{person.first_name} {person.last_name}</h3>
                       <span className="text-gray-400">•</span>
                       <div className="flex items-center text-gray-600">
                         <GraduationCap className="w-4 h-4 mr-1" />
@@ -167,34 +105,33 @@ export default function SearchResults() {
 
                     <div className="flex items-center space-x-6 mb-3">
                       <div className="flex items-center space-x-2">
-                        {person.dateAgainPercentage >= 60 ? (
+                        {person.date_again_percentage >= 60 ? (
                           <div className="flex items-center bg-green-50 rounded-full px-3 py-1 border border-green-200">
                             <ThumbsUp className="w-4 h-4 text-green-600 mr-2" />
-                            <span className="font-semibold text-green-700">{person.dateAgainPercentage}%</span>
+                            <span className="font-semibold text-green-700">{person.date_again_percentage}%</span>
                           </div>
-                        ) : person.dateAgainPercentage >= 40 ? (
+                        ) : person.date_again_percentage >= 40 ? (
                           <div className="flex items-center bg-yellow-50 rounded-full px-3 py-1 border border-yellow-200">
                             <Minus className="w-4 h-4 text-yellow-600 mr-2" />
-                            <span className="font-semibold text-yellow-700">{person.dateAgainPercentage}%</span>
+                            <span className="font-semibold text-yellow-700">{person.date_again_percentage}%</span>
                           </div>
                         ) : (
                           <div className="flex items-center bg-red-50 rounded-full px-3 py-1 border border-red-200">
                             <ThumbsDown className="w-4 h-4 text-red-600 mr-2" />
-                            <span className="font-semibold text-red-700">{person.dateAgainPercentage}%</span>
+                            <span className="font-semibold text-red-700">{person.date_again_percentage}%</span>
                           </div>
                         )}
                         <span className="text-gray-600">would date again</span>
                       </div>
                       <div className="text-sm text-gray-500 bg-gray-50 rounded-full px-3 py-1">
-                        {person.totalReviews} review{person.totalReviews !== 1 ? "s" : ""}
+                        {person.total_reviews} review{person.total_reviews !== 1 ? "s" : ""}
                       </div>
                     </div>
 
                     <div className="flex flex-wrap gap-2">
-                      {person.topTags.map((tag) => (
+                      {person.top_tags.map((tag) => (
                         <Badge
                           key={tag}
-                          variant="secondary"
                           className="text-xs bg-rose-50 text-rose-700 border-rose-200"
                         >
                           {tag}
@@ -222,7 +159,7 @@ export default function SearchResults() {
             <p className="text-gray-600 mb-4">Be the first to create a page by writing a review</p>
             <Button className="bg-rose-600 hover:bg-rose-700 text-white" asChild>
               <Link
-                href={`/review/new?firstName=${encodeURIComponent(firstName)}&lastInitial=${encodeURIComponent(lastInitial)}&college=${encodeURIComponent(college)}`}
+                href={`/review/new?firstName=${encodeURIComponent(firstName)}&lastName=${encodeURIComponent(lastName)}&college=${encodeURIComponent(college)}`}
               >
                 Write First Review
               </Link>
