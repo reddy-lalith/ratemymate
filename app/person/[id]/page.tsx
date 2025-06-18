@@ -33,7 +33,7 @@ const personData = {
         "Physical Touch": 5,
       },
       review:
-        "Pushti is absolutely incredible. We dated for over a year at UNC and she was the most caring, supportive partner I've ever had. She always knew exactly what to say when I was stressed about exams, and she went out of her way to help me with everything. Her communication skills are unmatched - we never had a single unresolved argument because she's so good at talking through issues. I honestly can't think of a single negative thing to say. She's perfect.",
+        "pushti is quite cool. she may come across as hella weird, but shes chill i guess ",
       date: "1 month ago",
     },
     {
@@ -48,7 +48,7 @@ const personData = {
         "Physical Touch": 5,
       },
       review:
-        "Dating Pushti was like winning the lottery. She has this amazing sense of humor that could make me laugh even on my worst days. She remembered every little detail about things I cared about and would surprise me with the most thoughtful gestures. Whether it was bringing me my favorite coffee during finals week or planning the perfect date nights around Chapel Hill, she always went above and beyond. 11/10 would date again in a heartbeat.",
+        "if ur dating pushti, goodluck!",
       date: "3 months ago",
     },
     {
@@ -63,7 +63,7 @@ const personData = {
         "Physical Touch": 5,
       },
       review:
-        "Pushti set the bar impossibly high for everyone else. She was completely loyal, never gave me any reason to doubt her commitment, and was my biggest cheerleader through everything. When I was going through a tough time with family issues, she was there for me every single day. She's the kind of person who makes you want to be a better version of yourself. I was honestly devastated when we had to break up due to long distance after graduation.",
+        "she lowkey bites, be weary",
       date: "6 months ago",
     },
     {
@@ -78,7 +78,7 @@ const personData = {
         "Physical Touch": 4,
       },
       review:
-        "I've never met anyone like Pushti. She has this rare combination of being incredibly fun and spontaneous while also being the most reliable person you'll ever meet. She planned the most amazing surprise birthday party for me, remembered every inside joke we ever had, and somehow always knew exactly what I needed before I even knew it myself. If you get the chance to date her, consider yourself the luckiest person alive.",
+        "vegetarian, thats all i need to say",
       date: "8 months ago",
     },
   ],
