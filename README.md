@@ -1,30 +1,75 @@
-# Review platform design
+# Rate My Mate
 
-*Automatically synced with your [v0.dev](https://v0.dev) deployments*
-
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/lalith-reddys-projects/v0-review-platform-design)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.dev-black?style=for-the-badge)](https://v0.dev/chat/projects/3KwO1vAAvVN)
+A modern dating review platform built with Next.js, React, and Tailwind CSS. Rate My Mate allows users to search for potential partners by their first name, last initial, and college, then read honest reviews from past partners to make more informed dating decisions.
 
 ## Overview
 
-This repository will stay in sync with your deployed chats on [v0.dev](https://v0.dev).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.dev](https://v0.dev).
+Rate My Mate is a dating review platform designed to help users make more informed decisions about their dating life. The platform features:
+
+- **Smart Search**: Search for people by first name, last initial, and college
+- **Honest Reviews**: Read anonymous reviews from past partners
+- **Rating System**: See percentage of people who would date again
+- **Tag System**: View top personality traits and characteristics
+- **Modern UI**: Beautiful, responsive design with smooth animations
+
+## Features
+
+- 🔍 **Advanced Search**: Find people using first name, last initial, and college
+- ⭐ **Review System**: Read and write honest, anonymous reviews
+- 📊 **Rating Metrics**: See "would date again" percentages
+- 🏷️ **Personality Tags**: View top characteristics and traits
+- 📱 **Responsive Design**: Works seamlessly on desktop and mobile
+- 🎨 **Modern UI**: Beautiful gradient backgrounds and smooth animations
+
+## Tech Stack
+
+- **Framework**: Next.js 15 with React 19
+- **Styling**: Tailwind CSS with custom animations
+- **UI Components**: Radix UI primitives with custom styling
+- **Icons**: Lucide React
+- **Forms**: React Hook Form with Zod validation
+- **Deployment**: Vercel
+
+## Getting Started
+
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   pnpm install
+   ```
+3. Run the development server:
+   ```bash
+   pnpm dev
+   ```
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
+
+## Project Structure
+
+```
+├── app/                    # Next.js app directory
+│   ├── auth/              # Authentication pages
+│   ├── review/            # Review functionality
+│   ├── search/            # Search results page
+│   ├── person/            # Individual person profiles
+│   └── page.tsx           # Homepage with search form
+├── components/            # Reusable UI components
+├── lib/                   # Utility functions
+└── styles/                # Global styles
+```
 
 ## Deployment
 
-Your project is live at:
+The project is currently deployed on Vercel at:
 
 **[https://vercel.com/lalith-reddys-projects/v0-review-platform-design](https://vercel.com/lalith-reddys-projects/v0-review-platform-design)**
 
-## Build your app
-
-Continue building your app on:
-
-**[https://v0.dev/chat/projects/3KwO1vAAvVN](https://v0.dev/chat/projects/3KwO1vAAvVN)**
-
 ## How It Works
 
-1. Create and modify your project using [v0.dev](https://v0.dev)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+1. **Search**: Users enter a person's first name, last initial, and college
+2. **Results**: View matching profiles with ratings and review counts
+3. **Reviews**: Read detailed, anonymous reviews from past partners
+4. **Decide**: Make informed decisions based on honest feedback
+
+## Contributing
+
+This is a personal project. Feel free to submit issues or pull requests for improvements.
