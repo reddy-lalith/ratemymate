@@ -85,7 +85,7 @@ export default function HomePage() {
                 <div className="flex-1">
                   <Input
                     type="text"
-                    placeholder="First name (e.g., Pushti)"
+                    placeholder="First name"
                     className="h-12 text-lg border-gray-200 focus:border-rose-400 focus:ring-rose-400"
                     value={searchData.firstName}
                     onChange={(e) => setSearchData((prev) => ({ ...prev, firstName: e.target.value }))}
@@ -95,7 +95,7 @@ export default function HomePage() {
                 <div className="flex-1">
                   <Input
                     type="text"
-                    placeholder="Last name (e.g., Lee)"
+                    placeholder="Last name"
                     className="h-12 text-lg border-gray-200 focus:border-rose-400 focus:ring-rose-400"
                     value={searchData.lastName}
                     onChange={(e) => setSearchData((prev) => ({ ...prev, lastName: e.target.value }))}
@@ -105,7 +105,7 @@ export default function HomePage() {
                 <div className="flex-1">
                   <Input
                     type="text"
-                    placeholder="College (e.g., UNC Chapel Hill)"
+                    placeholder="College"
                     className="h-12 text-lg border-gray-200 focus:border-rose-400 focus:ring-rose-400"
                     value={searchData.college}
                     onChange={(e) => setSearchData((prev) => ({ ...prev, college: e.target.value }))}
