@@ -5,7 +5,7 @@ import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { ArrowLeft, ThumbsUp, ThumbsDown, Minus, GraduationCap, Heart } from "lucide-react"
+import { ArrowLeft, ThumbsUp, ThumbsDown, Minus, GraduationCap, Heart, Sparkles, Calendar, MessageCircle } from "lucide-react"
 import Link from "next/link"
 
 interface SearchResult {
@@ -104,33 +104,33 @@ export default function SearchResults() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-subtle flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-rose-50/30 flex items-center justify-center">
         <div className="text-center">
           <div className="relative">
-            <div className="animate-spin rounded-full h-12 w-12 border-2 border-gray-200 border-t-rose-500 mx-auto mb-4"></div>
-            <Heart className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-rose-400 animate-subtle-pulse" />
+            <div className="animate-spin rounded-full h-12 w-12 border-2 border-slate-200 border-t-rose-500 mx-auto mb-4"></div>
+            <Heart className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-rose-400" />
           </div>
-          <p className="text-gray-600">Searching...</p>
+          <p className="text-slate-600">Searching...</p>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-gradient-subtle">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-rose-50/30">
       {/* Header */}
-      <header className="bg-white/90 backdrop-blur-sm border-b border-rose-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <header className="bg-white/80 backdrop-blur-md border-b border-slate-200/60 sticky top-0 z-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <Link href="/" className="text-2xl font-bold text-gray-900 flex items-center">
-              <Heart className="w-5 h-5 mr-2 text-rose-500 animate-subtle-pulse" />
+            <Link href="/" className="text-xl font-semibold text-slate-900 flex items-center">
+              <Heart className="w-5 h-5 mr-2 text-rose-500" />
               Rate My Mate
             </Link>
             <div className="flex items-center space-x-4">
-              <Link href="/auth" className="text-gray-600 hover:text-rose-600 font-medium">
+              <Link href="/auth" className="text-slate-600 hover:text-rose-600 text-sm font-medium">
                 Sign In
               </Link>
-              <Button className="bg-rose-600 hover:bg-rose-700 text-white">
+              <Button size="sm" className="bg-rose-600 hover:bg-rose-700 text-white">
                 <Link href="/auth">Get Started</Link>
               </Button>
             </div>
@@ -139,96 +139,118 @@ export default function SearchResults() {
       </header>
 
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="mb-6">
-          <Link href="/" className="inline-flex items-center text-rose-600 hover:text-rose-700 mb-4 font-medium">
+        {/* Back Button */}
+        <div className="mb-8">
+          <Link 
+            href="/" 
+            className="inline-flex items-center text-slate-600 hover:text-rose-600 text-sm font-medium transition-colors"
+          >
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Search
           </Link>
-          <h1 className="text-3xl font-bold text-gray-900">
-            Search Results for "{firstName} {lastName}" at {college}
-          </h1>
-          <p className="text-gray-600 mt-2">Found {results.length} people matching your search</p>
         </div>
 
-        <div className="space-y-4">
+        {/* Search Results Header */}
+        <div className="mb-8">
+          <h1 className="text-2xl font-bold text-slate-900 mb-2">
+            Search Results for "{firstName} {lastName}"
+          </h1>
+          <div className="flex items-center text-slate-500 text-sm">
+            <GraduationCap className="w-4 h-4 mr-2" />
+            <span>{college}</span>
+            <span className="mx-2">•</span>
+            <span>{results.length} people found</span>
+          </div>
+        </div>
+
+        {/* Search Results */}
+        <div className="space-y-4 mb-8">
           {results.map((person) => (
-            <Card key={person.id} className="hover:shadow-lg transition-all bg-white border-rose-100">
-              <CardContent className="p-6">
-                <div className="flex items-center justify-between">
-                  <div className="flex-1">
-                    <div className="flex items-center space-x-4 mb-3">
-                      <h3 className="text-xl font-semibold text-gray-900">{person.name}</h3>
-                      <span className="text-gray-400">•</span>
-                      <div className="flex items-center text-gray-600">
+            <div key={person.id} className="bg-white rounded-2xl shadow-sm border border-slate-200/60 p-6 hover:shadow-md transition-all">
+              <div className="flex items-center justify-between">
+                <div className="flex-1">
+                  {/* Person Info */}
+                  <div className="flex items-center space-x-4 mb-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-rose-400 to-purple-500 rounded-xl flex items-center justify-center shadow-sm">
+                      <span className="text-lg font-bold text-white">{person.name.split(" ")[0][0]}</span>
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-slate-900">{person.name}</h3>
+                      <div className="flex items-center text-slate-500 text-sm">
                         <GraduationCap className="w-4 h-4 mr-1" />
                         <span>{person.college}</span>
                       </div>
                     </div>
+                  </div>
 
-                    <div className="flex items-center space-x-6 mb-3">
-                      <div className="flex items-center space-x-2">
-                        {person.dateAgainPercentage >= 60 ? (
-                          <div className="flex items-center bg-green-50 rounded-full px-3 py-1 border border-green-200">
-                            <ThumbsUp className="w-4 h-4 text-green-600 mr-2" />
-                            <span className="font-semibold text-green-700">{person.dateAgainPercentage}%</span>
-                          </div>
-                        ) : person.dateAgainPercentage >= 40 ? (
-                          <div className="flex items-center bg-yellow-50 rounded-full px-3 py-1 border border-yellow-200">
-                            <Minus className="w-4 h-4 text-yellow-600 mr-2" />
-                            <span className="font-semibold text-yellow-700">{person.dateAgainPercentage}%</span>
-                          </div>
-                        ) : (
-                          <div className="flex items-center bg-red-50 rounded-full px-3 py-1 border border-red-200">
-                            <ThumbsDown className="w-4 h-4 text-red-600 mr-2" />
-                            <span className="font-semibold text-red-700">{person.dateAgainPercentage}%</span>
-                          </div>
-                        )}
-                        <span className="text-gray-600">would date again</span>
-                      </div>
-                      <div className="text-sm text-gray-500 bg-gray-50 rounded-full px-3 py-1">
-                        {person.totalReviews} review{person.totalReviews !== 1 ? "s" : ""}
-                      </div>
+                  {/* Rating Stats */}
+                  <div className="flex items-center space-x-6 mb-4">
+                    <div className="flex items-center space-x-3">
+                      {person.dateAgainPercentage >= 60 ? (
+                        <div className="flex items-center bg-gradient-to-r from-rose-500/10 to-purple-500/10 rounded-xl px-3 py-1.5 border border-rose-200/50">
+                          <ThumbsUp className="w-4 h-4 text-rose-500 mr-2" />
+                          <span className="font-semibold text-slate-900">{person.dateAgainPercentage}%</span>
+                          <span className="text-slate-600 text-sm ml-1">would date again</span>
+                        </div>
+                      ) : person.dateAgainPercentage >= 40 ? (
+                        <div className="flex items-center bg-gradient-to-r from-amber-500/10 to-orange-500/10 rounded-xl px-3 py-1.5 border border-amber-200/50">
+                          <Minus className="w-4 h-4 text-amber-500 mr-2" />
+                          <span className="font-semibold text-slate-900">{person.dateAgainPercentage}%</span>
+                          <span className="text-slate-600 text-sm ml-1">would date again</span>
+                        </div>
+                      ) : (
+                        <div className="flex items-center bg-gradient-to-r from-red-500/10 to-pink-500/10 rounded-xl px-3 py-1.5 border border-red-200/50">
+                          <ThumbsDown className="w-4 h-4 text-red-500 mr-2" />
+                          <span className="font-semibold text-slate-900">{person.dateAgainPercentage}%</span>
+                          <span className="text-slate-600 text-sm ml-1">would date again</span>
+                        </div>
+                      )}
                     </div>
-
-                    <div className="flex flex-wrap gap-2">
-                      {person.topTags.map((tag) => (
-                        <Badge
-                          key={tag}
-                          variant="secondary"
-                          className="text-xs bg-rose-50 text-rose-700 border-rose-200"
-                        >
-                          {tag}
-                        </Badge>
-                      ))}
+                    <div className="text-slate-500 bg-slate-100/50 rounded-xl px-3 py-1.5 text-sm">
+                      {person.totalReviews} review{person.totalReviews !== 1 ? "s" : ""}
                     </div>
                   </div>
 
-                  <div className="ml-6">
-                    <Button className="bg-rose-600 hover:bg-rose-700 text-white" asChild>
-                      <Link href={`/person/${person.id}`}>View Profile</Link>
-                    </Button>
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-2">
+                    {person.topTags.slice(0, 3).map((tag) => (
+                      <Badge
+                        key={tag}
+                        className="bg-gradient-to-r from-rose-50 to-purple-50 text-slate-700 border-rose-200/50 text-xs font-medium"
+                      >
+                        {tag}
+                      </Badge>
+                    ))}
                   </div>
                 </div>
-              </CardContent>
-            </Card>
+
+                {/* Action Button */}
+                <div className="ml-6">
+                  <Button className="bg-gradient-to-r from-rose-600 to-purple-600 hover:from-rose-700 hover:to-purple-700 text-white rounded-xl" asChild>
+                    <Link href={`/person/${person.id}`}>View Profile</Link>
+                  </Button>
+                </div>
+              </div>
+            </div>
           ))}
         </div>
 
         {/* No results found option */}
-        <Card className="mt-8 border-dashed border-2 border-rose-200 bg-white/70">
-          <CardContent className="p-8 text-center">
-            <Heart className="w-12 h-12 text-rose-200 mx-auto mb-4" />
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">Don't see who you're looking for?</h3>
-            <p className="text-gray-600 mb-4">Be the first to create a page by writing a review</p>
-            <Button className="bg-rose-600 hover:bg-rose-700 text-white" asChild>
-              <Link
-                href={`/review/new?firstName=${encodeURIComponent(firstName)}&lastName=${encodeURIComponent(lastName)}&college=${encodeURIComponent(college)}`}
-              >
-                Write First Review
-              </Link>
-            </Button>
-          </CardContent>
-        </Card>
+        <div className="bg-white rounded-2xl shadow-sm border border-slate-200/60 p-8 text-center">
+          <div className="w-16 h-16 bg-gradient-to-br from-rose-400 to-purple-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-sm">
+            <Sparkles className="w-8 h-8 text-white" />
+          </div>
+          <h3 className="text-lg font-semibold text-slate-900 mb-2">Don't see who you're looking for?</h3>
+          <p className="text-slate-600 mb-6">Be the first to create a page by writing a review</p>
+          <Button className="bg-gradient-to-r from-rose-600 to-purple-600 hover:from-rose-700 hover:to-purple-700 text-white rounded-xl" asChild>
+            <Link
+              href={`/review/new?firstName=${encodeURIComponent(firstName)}&lastName=${encodeURIComponent(lastName)}&college=${encodeURIComponent(college)}`}
+            >
+              <MessageCircle className="w-4 h-4 mr-2" />
+              Write First Review
+            </Link>
+          </Button>
+        </div>
       </main>
     </div>
   )
