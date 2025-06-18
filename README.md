@@ -11,7 +11,6 @@ Rate My Mate is a dating review platform designed to help users make more inform
 - **Rating System**: See percentage of people who would date again
 - **Tag System**: View top personality traits and characteristics
 - **Modern UI**: Beautiful, responsive design with smooth animations
-- **Real Database**: Powered by Supabase for data persistence
 
 ## Features
 
@@ -21,7 +20,6 @@ Rate My Mate is a dating review platform designed to help users make more inform
 - 🏷️ **Personality Tags**: View top characteristics and traits
 - 📱 **Responsive Design**: Works seamlessly on desktop and mobile
 - 🎨 **Modern UI**: Beautiful gradient backgrounds and smooth animations
-- 🗄️ **Database Integration**: Real data persistence with Supabase
 
 ## Tech Stack
 
@@ -30,43 +28,20 @@ Rate My Mate is a dating review platform designed to help users make more inform
 - **UI Components**: Radix UI primitives with custom styling
 - **Icons**: Lucide React
 - **Forms**: React Hook Form with Zod validation
-- **Database**: Supabase (PostgreSQL)
 - **Deployment**: Vercel
 
 ## Getting Started
 
-### Prerequisites
-
-- Node.js 18+ 
-- A Supabase account
-
-### Installation
-
 1. Clone the repository
 2. Install dependencies:
    ```bash
-   npm install
+   pnpm install
    ```
-3. Set up Supabase (see [Supabase Setup Guide](./SUPABASE_SETUP.md))
-4. Create a `.env.local` file with your Supabase credentials:
-   ```env
-   NEXT_PUBLIC_SUPABASE_URL=your_project_url_here
-   NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key_here
-   ```
-5. Run the development server:
+3. Run the development server:
    ```bash
-   npm run dev
+   pnpm dev
    ```
-6. Open [http://localhost:3000](http://localhost:3000) in your browser
-
-## Database Setup
-
-This application uses Supabase as the backend database. Follow the [Supabase Setup Guide](./SUPABASE_SETUP.md) to:
-
-1. Create a Supabase project
-2. Set up the required database tables
-3. Configure Row Level Security policies
-4. Add sample data (optional)
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
 ## Project Structure
 
@@ -74,37 +49,13 @@ This application uses Supabase as the backend database. Follow the [Supabase Set
 ├── app/                    # Next.js app directory
 │   ├── auth/              # Authentication pages
 │   ├── review/            # Review functionality
-│   │   └── new/           # New review form
 │   ├── search/            # Search results page
 │   ├── person/            # Individual person profiles
-│   │   └── [id]/          # Dynamic person pages
 │   └── page.tsx           # Homepage with search form
 ├── components/            # Reusable UI components
 ├── lib/                   # Utility functions
-│   ├── supabase.ts        # Supabase client configuration
-│   └── database.ts        # Database operations
 └── styles/                # Global styles
 ```
-
-## Database Schema
-
-### People Table
-- `id`: UUID (Primary Key)
-- `first_name`: TEXT
-- `last_name`: TEXT  
-- `college`: TEXT
-- `created_at`: TIMESTAMP
-- `updated_at`: TIMESTAMP
-
-### Reviews Table
-- `id`: UUID (Primary Key)
-- `person_id`: UUID (Foreign Key to people.id)
-- `rating`: INTEGER (1-5)
-- `would_date_again`: BOOLEAN
-- `tags`: TEXT[]
-- `review_text`: TEXT
-- `created_at`: TIMESTAMP
-- `updated_at`: TIMESTAMP
 
 ## Deployment
 
@@ -118,12 +69,7 @@ The project is currently deployed on Vercel at:
 2. **Results**: View matching profiles with ratings and review counts
 3. **Reviews**: Read detailed, anonymous reviews from past partners
 4. **Decide**: Make informed decisions based on honest feedback
-5. **Contribute**: Write reviews to help others make better decisions
 
 ## Contributing
 
 This is a personal project. Feel free to submit issues or pull requests for improvements.
-
-## License
-
-This project is open source and available under the [MIT License](LICENSE).

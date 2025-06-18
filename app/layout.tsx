@@ -2,9 +2,9 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Rate My Mate - Dating Review Platform',
-  description: 'Find honest reviews from past partners. Make more informed decisions about your dating life.',
-  generator: 'Next.js',
+  title: 'v0 App',
+  description: 'Created with v0',
+  generator: 'v0.dev',
 }
 
 export default function RootLayout({

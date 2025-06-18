@@ -7,11 +7,73 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { ArrowLeft, ThumbsUp, ThumbsDown, Minus, GraduationCap, Heart } from "lucide-react"
 import Link from "next/link"
-import { searchPeople, PersonWithStats } from "@/lib/database"
+
+interface SearchResult {
+  id: string
+  name: string
+  college: string
+  dateAgainPercentage: number
+  totalReviews: number
+  topTags: string[]
+}
+
+// Mock database search function
+const searchPeople = async (firstName: string, lastName: string, college: string): Promise<SearchResult[]> => {
+  // Simulate API delay
+  await new Promise((resolve) => setTimeout(resolve, 500))
+
+  // Mock database results
+  const mockDatabase = [
+    {
+      id: "pushti-laddha-unc",
+      firstName: "Pushti",
+      lastName: "laddha",
+      college: "UNC Chapel Hill",
+      dateAgainPercentage: 100,
+      totalReviews: 8,
+      topTags: ["Amazing Communicator", "Incredibly Supportive", "Loyal", "Funny"],
+    },
+    {
+      id: "john-doe-nyu",
+      firstName: "John",
+      lastName: "Doe",
+      college: "NYU",
+      dateAgainPercentage: 75,
+      totalReviews: 4,
+      topTags: ["Great Communicator", "Funny", "Respectful"],
+    },
+    {
+      id: "sarah-miller-duke",
+      firstName: "Sarah",
+      lastName: "Miller",
+      college: "Duke University",
+      dateAgainPercentage: 90,
+      totalReviews: 6,
+      topTags: ["Loyal", "Supportive", "Great Communicator"],
+    },
+  ]
+
+  // Filter results based on search criteria
+  return mockDatabase
+    .filter(
+      (person) =>
+        person.firstName.toLowerCase() === firstName.toLowerCase() &&
+        person.lastName.toLowerCase() === lastName.toLowerCase() &&
+        person.college.toLowerCase().includes(college.toLowerCase()),
+    )
+    .map((person) => ({
+      id: person.id,
+      name: `${person.firstName} ${person.lastName}`,
+      college: person.college,
+      dateAgainPercentage: person.dateAgainPercentage,
+      totalReviews: person.totalReviews,
+      topTags: person.topTags,
+    }))
+}
 
 export default function SearchResults() {
   const searchParams = useSearchParams()
-  const [results, setResults] = useState<PersonWithStats[]>([])
+  const [results, setResults] = useState<SearchResult[]>([])
   const [loading, setLoading] = useState(true)
 
   // Get search parameters once and memoize them
@@ -95,7 +157,7 @@ export default function SearchResults() {
                 <div className="flex items-center justify-between">
                   <div className="flex-1">
                     <div className="flex items-center space-x-4 mb-3">
-                      <h3 className="text-xl font-semibold text-gray-900">{person.first_name} {person.last_name}</h3>
+                      <h3 className="text-xl font-semibold text-gray-900">{person.name}</h3>
                       <span className="text-gray-400">•</span>
                       <div className="flex items-center text-gray-600">
                         <GraduationCap className="w-4 h-4 mr-1" />
@@ -105,33 +167,34 @@ export default function SearchResults() {
 
                     <div className="flex items-center space-x-6 mb-3">
                       <div className="flex items-center space-x-2">
-                        {person.date_again_percentage >= 60 ? (
+                        {person.dateAgainPercentage >= 60 ? (
                           <div className="flex items-center bg-green-50 rounded-full px-3 py-1 border border-green-200">
                             <ThumbsUp className="w-4 h-4 text-green-600 mr-2" />
-                            <span className="font-semibold text-green-700">{person.date_again_percentage}%</span>
+                            <span className="font-semibold text-green-700">{person.dateAgainPercentage}%</span>
                           </div>
-                        ) : person.date_again_percentage >= 40 ? (
+                        ) : person.dateAgainPercentage >= 40 ? (
                           <div className="flex items-center bg-yellow-50 rounded-full px-3 py-1 border border-yellow-200">
                             <Minus className="w-4 h-4 text-yellow-600 mr-2" />
-                            <span className="font-semibold text-yellow-700">{person.date_again_percentage}%</span>
+                            <span className="font-semibold text-yellow-700">{person.dateAgainPercentage}%</span>
                           </div>
                         ) : (
                           <div className="flex items-center bg-red-50 rounded-full px-3 py-1 border border-red-200">
                             <ThumbsDown className="w-4 h-4 text-red-600 mr-2" />
-                            <span className="font-semibold text-red-700">{person.date_again_percentage}%</span>
+                            <span className="font-semibold text-red-700">{person.dateAgainPercentage}%</span>
                           </div>
                         )}
                         <span className="text-gray-600">would date again</span>
                       </div>
                       <div className="text-sm text-gray-500 bg-gray-50 rounded-full px-3 py-1">
-                        {person.total_reviews} review{person.total_reviews !== 1 ? "s" : ""}
+                        {person.totalReviews} review{person.totalReviews !== 1 ? "s" : ""}
                       </div>
                     </div>
 
                     <div className="flex flex-wrap gap-2">
-                      {person.top_tags.map((tag) => (
+                      {person.topTags.map((tag) => (
                         <Badge
                           key={tag}
+                          variant="secondary"
                           className="text-xs bg-rose-50 text-rose-700 border-rose-200"
                         >
                           {tag}
