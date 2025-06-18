@@ -18,34 +18,34 @@ interface SearchResult {
 }
 
 // Mock database search function
-const searchPeople = async (firstName: string, lastInitial: string, college: string): Promise<SearchResult[]> => {
+const searchPeople = async (firstName: string, lastName: string, college: string): Promise<SearchResult[]> => {
   // Simulate API delay
   await new Promise((resolve) => setTimeout(resolve, 500))
 
   // Mock database results
   const mockDatabase = [
     {
-      id: "pushti-l-unc",
+      id: "pushti-laddha-unc",
       firstName: "Pushti",
-      lastInitial: "L",
+      lastName: "Laddha",
       college: "UNC Chapel Hill",
       dateAgainPercentage: 100,
       totalReviews: 8,
       topTags: ["Amazing Communicator", "Incredibly Supportive", "Loyal", "Funny"],
     },
     {
-      id: "john-d-nyu",
+      id: "john-doe-nyu",
       firstName: "John",
-      lastInitial: "D",
+      lastName: "Doe",
       college: "NYU",
       dateAgainPercentage: 75,
       totalReviews: 4,
       topTags: ["Great Communicator", "Funny", "Respectful"],
     },
     {
-      id: "sarah-m-duke",
+      id: "sarah-miller-duke",
       firstName: "Sarah",
-      lastInitial: "M",
+      lastName: "Miller",
       college: "Duke University",
       dateAgainPercentage: 90,
       totalReviews: 6,
@@ -58,12 +58,12 @@ const searchPeople = async (firstName: string, lastInitial: string, college: str
     .filter(
       (person) =>
         person.firstName.toLowerCase() === firstName.toLowerCase() &&
-        person.lastInitial.toLowerCase() === lastInitial.toLowerCase() &&
+        person.lastName.toLowerCase() === lastName.toLowerCase() &&
         person.college.toLowerCase().includes(college.toLowerCase()),
     )
     .map((person) => ({
       id: person.id,
-      name: `${person.firstName} ${person.lastInitial}.`,
+      name: `${person.firstName} ${person.lastName}`,
       college: person.college,
       dateAgainPercentage: person.dateAgainPercentage,
       totalReviews: person.totalReviews,
@@ -78,14 +78,14 @@ export default function SearchResults() {
 
   // Get search parameters once and memoize them
   const firstName = searchParams.get("firstName") || ""
-  const lastInitial = searchParams.get("lastInitial") || ""
+  const lastName = searchParams.get("lastName") || ""
   const college = searchParams.get("college") || ""
 
   useEffect(() => {
     // Only run search if we have all required parameters
-    if (firstName && lastInitial && college) {
+    if (firstName && lastName && college) {
       setLoading(true)
-      searchPeople(firstName, lastInitial, college)
+      searchPeople(firstName, lastName, college)
         .then((searchResults) => {
           setResults(searchResults)
         })
@@ -100,7 +100,7 @@ export default function SearchResults() {
       setLoading(false)
       setResults([])
     }
-  }, [firstName, lastInitial, college])
+  }, [firstName, lastName, college])
 
   if (loading) {
     return (
@@ -145,7 +145,7 @@ export default function SearchResults() {
             Back to Search
           </Link>
           <h1 className="text-3xl font-bold text-gray-900">
-            Search Results for "{firstName} {lastInitial}." at {college}
+            Search Results for "{firstName} {lastName}" at {college}
           </h1>
           <p className="text-gray-600 mt-2">Found {results.length} people matching your search</p>
         </div>
@@ -222,7 +222,7 @@ export default function SearchResults() {
             <p className="text-gray-600 mb-4">Be the first to create a page by writing a review</p>
             <Button className="bg-rose-600 hover:bg-rose-700 text-white" asChild>
               <Link
-                href={`/review/new?firstName=${encodeURIComponent(firstName)}&lastInitial=${encodeURIComponent(lastInitial)}&college=${encodeURIComponent(college)}`}
+                href={`/review/new?firstName=${encodeURIComponent(firstName)}&lastName=${encodeURIComponent(lastName)}&college=${encodeURIComponent(college)}`}
               >
                 Write First Review
               </Link>
