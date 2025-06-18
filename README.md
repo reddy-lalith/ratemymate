@@ -1,12 +1,12 @@
 # Rate My Mate
 
-A modern dating review platform built with Next.js, React, and Tailwind CSS. Rate My Mate allows users to search for potential partners by their first name, last name, and college, then read honest reviews from past partners to make more informed dating decisions.
+A modern dating review platform built with Next.js, React, and Tailwind CSS. Rate My Mate allows users to search for potential partners by their first name, last initial, and college, then read honest reviews from past partners to make more informed dating decisions.
 
 ## Overview
 
 Rate My Mate is a dating review platform designed to help users make more informed decisions about their dating life. The platform features:
 
-- **Smart Search**: Search for people by first name, last name, and college
+- **Smart Search**: Search for people by first name, last initial, and college
 - **Honest Reviews**: Read anonymous reviews from past partners
 - **Rating System**: See percentage of people who would date again
 - **Tag System**: View top personality traits and characteristics
@@ -14,7 +14,7 @@ Rate My Mate is a dating review platform designed to help users make more inform
 
 ## Features
 
-- 🔍 **Advanced Search**: Find people using first name, last name, and college
+- 🔍 **Advanced Search**: Find people using first name, last initial, and college
 - ⭐ **Review System**: Read and write honest, anonymous reviews
 - 📊 **Rating Metrics**: See "would date again" percentages
 - 🏷️ **Personality Tags**: View top characteristics and traits
@@ -65,7 +65,7 @@ The project is currently deployed on Vercel at:
 
 ## How It Works
 
-1. **Search**: Users enter a person's first name, last name, and college
+1. **Search**: Users enter a person's first name, last initial, and college
 2. **Results**: View matching profiles with ratings and review counts
 3. **Reviews**: Read detailed, anonymous reviews from past partners
 4. **Decide**: Make informed decisions based on honest feedback

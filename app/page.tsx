@@ -12,17 +12,17 @@ import Link from "next/link"
 export default function HomePage() {
   const [searchData, setSearchData] = useState({
     firstName: "",
-    lastName: "",
+    lastInitial: "",
     college: "",
   })
   const router = useRouter()
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
-    if (searchData.firstName && searchData.lastName && searchData.college) {
+    if (searchData.firstName && searchData.lastInitial && searchData.college) {
       const searchParams = new URLSearchParams({
         firstName: searchData.firstName,
-        lastName: searchData.lastName,
+        lastInitial: searchData.lastInitial,
         college: searchData.college,
       })
       router.push(`/search?${searchParams.toString()}`)
@@ -95,10 +95,11 @@ export default function HomePage() {
                 <div className="flex-1">
                   <Input
                     type="text"
-                    placeholder="Last name (e.g., Lee)"
+                    placeholder="Last initial (e.g., L)"
                     className="h-12 text-lg border-gray-200 focus:border-rose-400 focus:ring-rose-400"
-                    value={searchData.lastName}
-                    onChange={(e) => setSearchData((prev) => ({ ...prev, lastName: e.target.value }))}
+                    maxLength={1}
+                    value={searchData.lastInitial}
+                    onChange={(e) => setSearchData((prev) => ({ ...prev, lastInitial: e.target.value.toUpperCase() }))}
                     required
                   />
                 </div>
@@ -120,7 +121,7 @@ export default function HomePage() {
 
               <p className="text-sm text-gray-600 flex items-center justify-center">
                 <Sparkles className="w-4 h-4 mr-2 text-blush-400" />
-                Search by first name, last name, and college to find reviews
+                Search by first name, last initial, and college to find reviews
               </p>
             </div>
           </div>
@@ -138,7 +139,7 @@ export default function HomePage() {
                 <Search className="w-8 h-8 text-rose-600" />
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-2">Search</h3>
-              <p className="text-gray-600">Search for someone by their first name, last name, and college</p>
+              <p className="text-gray-600">Search for someone by their first name, last initial, and college</p>
             </div>
             <div className="text-center bg-white/70 backdrop-blur-sm rounded-xl p-6 shadow-sm border border-rose-50 hover:shadow-md transition-all">
               <div className="w-16 h-16 bg-blush-100 rounded-full flex items-center justify-center mx-auto mb-4">
