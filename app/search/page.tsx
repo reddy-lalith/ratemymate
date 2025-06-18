@@ -22,6 +22,11 @@ const searchPeople = async (firstName: string, lastName: string, college: string
   // Simulate API delay
   await new Promise((resolve) => setTimeout(resolve, 500))
 
+  // Trim whitespace from search parameters
+  const trimmedFirstName = firstName.trim()
+  const trimmedLastName = lastName.trim()
+  const trimmedCollege = college.trim()
+
   // Mock database results
   const mockDatabase = [
     {
@@ -75,9 +80,9 @@ const searchPeople = async (firstName: string, lastName: string, college: string
   return mockDatabase
     .filter(
       (person) =>
-        person.firstName.toLowerCase() === firstName.toLowerCase() &&
-        person.lastName.toLowerCase() === lastName.toLowerCase() &&
-        person.college.toLowerCase().includes(college.toLowerCase()),
+        person.firstName.toLowerCase() === trimmedFirstName.toLowerCase() &&
+        person.lastName.toLowerCase() === trimmedLastName.toLowerCase() &&
+        person.college.toLowerCase().includes(trimmedCollege.toLowerCase()),
     )
     .map((person) => ({
       id: person.id,
