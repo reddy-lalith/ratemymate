@@ -295,7 +295,7 @@ const peopleDatabase = {
       "Quality Time": 3.6,
       "Physical Touch": 3.2,
     },
-    topPositiveTags: ["CS Major", "Day Trader", "Honey Lover", "Whiskey Drinker", "Ambitious", "Tech Savvy"],
+    topPositiveTags: ["CS Major", "Day Trader", "Honey Bread", "Whiskey Drinker", "Ambitious", "Tech Savvy"],
     topNegativeTags: ["Failed Trader", "Broke", "Weird Food Habits"],
     reviews: [
       {
